@@ -1,0 +1,89 @@
+{% load static %}
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="{% static 'view/img/favicon.ico' %}">
+<title>Profiles</title>
+<!-- Bootstrap core CSS -->
+<link href="{% static 'view/css/bootstrap.min.css' %}" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="{% static 'view/css/mediumish.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+	{% if user.is_authenticated %}
+        <h1><a href="">Hai {{user.username}}...</a></h1>
+	    <h1><a href="{% url 'logout' %}">logout</a></h1>
+
+
+        {% else %}
+        <h1><a href="{% url 'login' %}">login</a></h1>
+
+        {% endif %}
+	<div class="mainheading">
+		<h1 class="sitetitle">Create Your Portfolio</h1>
+		<p class="lead">
+			 click on your image to view your Portfolio webpage
+		</p>
+	</div>
+<!-- End Site Title
+================================================== -->
+
+	<section class="recent-posts">
+	<div class="section-title">
+		<h2><span>All Profiles</span></h2><a href="{% url 'blogs:new_post' %}"><img src="https://img.icons8.com/ios/50/000000/add--v1.png"/>Click To add Profile</a>
+	</div>
+
+	<div class="card-columns listrecent">
+		{% for post in posts %}
+		<!-- begin post -->
+		<div class="card">
+			<a href="{% url 'blogs:view' post.id %}">
+				<img class="img-fluid" src="{{post.img.url}}" alt="height:100px;width:100px;">
+			</a>
+			<div class="card-block">
+				<h2 class="card-title"><a href="post.html">{{ post.name }}</a></h2>
+				<h4 class="card-text">{{ post.desc }}</h4>
+				<div class="metafooter">
+					<div class="wrapfooter">
+						<a href="{% url 'blogs:edit_post' post.id %}">Edit</a>
+						<a href="{% url 'blogs:delete' post.id %}">Delete</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% endfor %}
+
+
+	</div>
+	</section>
+	<!-- End List Posts
+	================================================== -->
+
+	<!-- Begin Footer
+	================================================== -->
+
+	<!-- End Footer
+	================================================== -->
+
+</div>
+<!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'view/js/jquery.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="{% static 'view/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'view/js/ie10-viewport-bug-workaround.js' %}"></script>
+</body>
+</html>

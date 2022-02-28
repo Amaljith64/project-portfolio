@@ -1,0 +1,16 @@
+
+{% block body %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     <input type="text" name="name" placeholder="Product Name"><br>
+     <input type="text" name="job" placeholder="job"><br>
+     <input type="text" name="desc" placeholder="Product desc"><br>
+
+     <input type="file" name="img" placeholder="Product image"><br>
+     <input type="text" name="phone" placeholder="Phone"><br>
+     <input type="submit" value="ADD">
+
+</form>
+
+{% endblock %}
